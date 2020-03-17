@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- React Js-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        class Headline extends React.Component {
+            render() {
+
+                const title = 'ReactJS'
+
+                return (
+                    <div>
+                        <h1>Hello World from {title}</h1>
+                        <p>{title} test...</p>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Headline />, document.querySelector("#root"))
+    </script>
+</body>
+
+</html>
