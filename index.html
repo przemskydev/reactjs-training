@@ -20,20 +20,25 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
 
-        class Names extends React.Component {
-            render() {
+        const Names = () => {
+                const [showNameState, setShowNameState] = React.useState(true);
                 const names = ['Pep', 'Dep', 'Cep', 'Yep'];
                 const namesList = names.map(name => <li key={name}>{name}</li>)
                 const noneList = 'List name empty'
-                const showList = true;
+                // let showList = true;
+
+                const hideList = () => { 
+                    showNameState ? setShowNameState(false) : setShowNameState(true) 
+                }
 
                 return (
                     <div>
-                        {showList ? <ul> {namesList} </ul> : <p>{noneList}</p>}
+                        {showNameState ? <ul> {namesList} </ul> : <p>{noneList}</p>}
+                        <button onClick={hideList}>Hide List</button>
                     </div>
                 )
 
-            }
+            
         }
        
 
