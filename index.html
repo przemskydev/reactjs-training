@@ -19,15 +19,38 @@
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        class Headline extends React.Component {
-            render() {
 
-                const title = 'ReactJS'
+        class Names extends React.Component {
+            render() {
+                const names = ['Pep', 'Dep', 'Cep', 'Yep'];
+                const namesList = names.map(name => <li key={name}>{name}</li>)
+                const noneList = 'List name empty'
+                const showList = true;
 
                 return (
                     <div>
-                        <h1>Hello World from {title}</h1>
-                        <p>{title} test...</p>
+                        {showList ? <ul> {namesList} </ul> : <p>{noneList}</p>}
+                    </div>
+                )
+
+            }
+        }
+       
+
+        class Headline extends React.Component {
+            state = {
+                title: 'ReactJS'
+            }
+
+            render() {
+                const changeTitle = () => {this.setState({title: 'Super ReactJS'})}
+
+                return (
+                    <div>
+                        <h1>Hello World from {this.state.title}</h1>
+                        <p>{this.state.title} test...</p>
+                        <Names />
+                        <button onClick={changeTitle}>Change title</button>
                     </div>
                 )
             }
