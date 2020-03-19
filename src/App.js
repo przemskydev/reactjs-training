@@ -1,14 +1,11 @@
 import React from 'react';
+import Todo from './components/Todo'
 import './App.css';
 
 function App() {
 
-  const name = 'Przemsky'
-  
   return (
-    <div>
-      <h1>Hello {name}</h1>
-    </div>
+    <Todo />
   );
 }
 

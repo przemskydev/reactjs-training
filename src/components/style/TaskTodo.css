@@ -1,0 +1,20 @@
+.card {
+  border: 2px black solid;
+  margin: 1em;
+  padding: 1em;
+  width: 200px;
+}
+
+.card h3 {
+  display: flex;
+  justify-content: center;
+}
+
+.card button {
+  border: 1px black solid;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-around;
+}
