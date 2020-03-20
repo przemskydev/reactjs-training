@@ -7,12 +7,14 @@ import './style/Todo.css';
 
 
 class Todo extends React.Component {
-  state = {
-    list: [
-      { id: 1, title: 'Zrobić obiad', isCompleted: false },
-      { id: 1, title: 'Zrobić obiad', isCompleted: false }
-      
-    ]
+  constructor(props){
+    super(props);
+    this.state = {
+        list: [
+          { id: 1, title: 'Zrobić obiad', isCompleted: false },
+          { id: 1, title: 'Zrobić obiad', isCompleted: false }
+        ]
+    }
   }
 
   render() {
