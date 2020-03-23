@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 
-const Input = () => {
-  const [addTask, setAddTask] = useState('')
 
-  return (
-    <div>
-      <input
-        type='addTask'
-        value={addTask}
-        placeholder='Add task'
-        onChange={e => setAddTask(e.target.value)} />
-      <button type='button'>Add task</button>
-    </div>
-  )
+class Input extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.addTask = this.addTask.bind(this);
+  }
+
+  handleChange(e){
+    this.props.valueChange(e.target.value);
+  }
+
+  addTask(){
+    this.props.addNewTask()
+  }
+
+  render() {
+    return (
+      <div>
+        <input
+          type='addTask'
+          value={this.props.value}
+          placeholder='Add task'
+          onChange={this.handleChange} />
+        <button type='button' onClick={this.addTask} >Add task</button>
+      </div>
+    )
+  }
 }
 
 export default Input;
