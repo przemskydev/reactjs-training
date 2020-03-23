@@ -1,7 +1,7 @@
 import React from 'react';
 import './style/TaskTodo.css';
 
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Col, Button, Card } from 'react-bootstrap';
 
 
 
@@ -10,7 +10,7 @@ const TaskTodo = props => {
 
   return (
 
-      <Col sm='4'>
+      <Col>
         <Card>
           <Card.Body>
             <Card.Title>{title}</Card.Title>

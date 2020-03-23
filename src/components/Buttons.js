@@ -1,6 +1,7 @@
 import React from 'react';
 import './style/Buttons.css'
 
+
 const Buttons = () => {
   return (
     <div className='btnPos'>
