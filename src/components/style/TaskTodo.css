@@ -5,6 +5,15 @@
   width: 15rem;
 }
 
+.card.completed {
+  border: 2px green solid;
+  opacity: .5;
+}
+
+.card.completed h3 {
+  text-decoration: line-through;
+}
+
 .card h3 {
   display: flex;
   justify-content: center;

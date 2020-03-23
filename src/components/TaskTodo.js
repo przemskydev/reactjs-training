@@ -5,18 +5,33 @@ import { Col, Button, Card } from 'react-bootstrap';
 
 
 
-const TaskTodo = props => {
-  const title = <h3>{props.element.title}</h3>;
+class TaskTodo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setTaskDone = this.setTaskDone.bind(this);
+  }
 
-  return (
+  setTaskDone() {
+    const elementIndex = this.props.element.id;
+    this.props.doneTask(elementIndex);
+  }
+
+  render() {
+    const isCompleted = this.props.element.isCompleted;
+    const title = <h3>{this.props.element.title}</h3>;
+    
+
+    return (
 
       <Col>
-        <Card>
+        <Card className={`${isCompleted ? 'completed' : ''}`}>
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <div className='buttons'>
-              <Button variant="outline-success">Done</Button>
-              <Button variant="outline-danger">Delete</Button>
+              <Button onClick={this.setTaskDone}
+                variant="outline-success">Done</Button>
+              <Button
+                variant="outline-danger">Delete</Button>
             </div>
           </Card.Body>
           <Card.Text>
@@ -25,7 +40,8 @@ const TaskTodo = props => {
         </Card>
       </Col>
 
-  )
+    )
+  }
 }
 
 export default TaskTodo;
