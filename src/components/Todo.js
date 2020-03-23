@@ -47,7 +47,6 @@ class Todo extends React.Component {
     this.setState({
       list: newelement
     })
-    console.log(elementIndex)
   }
 
   render() {

@@ -1,9 +1,8 @@
 import React from 'react';
 import './style/TaskTodo.css';
+import DateComponent from './DateComponent'
 
 import { Col, Button, Card } from 'react-bootstrap';
-
-
 
 class TaskTodo extends React.Component {
   constructor(props) {
@@ -17,12 +16,10 @@ class TaskTodo extends React.Component {
   }
 
   render() {
-    const isCompleted = this.props.element.isCompleted;
     const title = <h3>{this.props.element.title}</h3>;
-    
+    const isCompleted = this.props.element.isCompleted;
 
     return (
-
       <Col>
         <Card className={`${isCompleted ? 'completed' : ''}`}>
           <Card.Body>
@@ -35,11 +32,10 @@ class TaskTodo extends React.Component {
             </div>
           </Card.Body>
           <Card.Text>
-            <small className="text-muted">Last updated 3 mins ago</small>
+            <DateComponent />
           </Card.Text>
         </Card>
       </Col>
-
     )
   }
 }
