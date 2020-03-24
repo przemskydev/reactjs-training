@@ -41,7 +41,7 @@ class Todo extends React.Component {
   }
 
   handleDone(el){
-    const elementIndex = this.state.list.findIndex(elem => elem.id == el)
+    const elementIndex = this.state.list.findIndex(elem => elem.id === el)
     const newelement = this.state.list;
     newelement[elementIndex].isCompleted = true;
     this.setState({

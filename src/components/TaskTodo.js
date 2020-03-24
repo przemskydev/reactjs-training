@@ -32,7 +32,7 @@ class TaskTodo extends React.Component {
             </div>
           </Card.Body>
           <Card.Text>
-            <DateComponent />
+            <DateComponent isCompleted={isCompleted}/>
           </Card.Text>
         </Card>
       </Col>
