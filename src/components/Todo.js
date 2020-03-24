@@ -12,9 +12,10 @@ class Todo extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.addTaskToList = this.addTaskToList.bind(this);
     this.handleDone = this.handleDone.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
+
     this.state = {
       list: [
-        { id: 1, title: 'Zrobić obiad', isCompleted: false },
       ],
       inputValue: ''
     }
@@ -49,6 +50,20 @@ class Todo extends React.Component {
     })
   }
 
+  handleRemove(elem){
+    const elIndex = this.state.list.findIndex(el => el.id === elem)
+    let actualList = [...this.state.list]
+
+    console.log(elIndex)
+    console.log(actualList)
+
+    actualList = actualList.slice(0, elIndex).concat(actualList.slice(elIndex + 1, actualList.length))
+    this.setState({
+      list: actualList
+    })
+  
+  }
+
   render() {
 
     const welcome = <h1>Hello there!</h1>;
@@ -60,6 +75,7 @@ class Todo extends React.Component {
           key={el.id}
           element={el}
           doneTask = {this.handleDone}
+          remove={this.handleRemove}
         />
       )
 

@@ -8,11 +8,16 @@ class TaskTodo extends React.Component {
   constructor(props) {
     super(props);
     this.setTaskDone = this.setTaskDone.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
-
   setTaskDone() {
     const elementIndex = this.props.element.id;
     this.props.doneTask(elementIndex);
+  }
+
+  removeTask() {
+    const elementIndex = this.props.element.id;
+    this.props.remove(elementIndex)
   }
 
   render() {
@@ -25,14 +30,17 @@ class TaskTodo extends React.Component {
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <div className='buttons'>
-              <Button onClick={this.setTaskDone}
+              <Button
+                onClick={this.setTaskDone}
                 variant="outline-success">Done</Button>
               <Button
+                onClick={this.removeTask}
                 variant="outline-danger">Delete</Button>
             </div>
           </Card.Body>
           <Card.Text>
-            <DateComponent isCompleted={isCompleted}/>
+            <DateComponent
+              isCompleted={isCompleted} />
           </Card.Text>
         </Card>
       </Col>
