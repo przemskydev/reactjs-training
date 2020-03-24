@@ -51,22 +51,34 @@ class Todo extends React.Component {
   }
 
   handleRemove(elem) {
+    const elIndex = this.state.list.findIndex(el => el.id === elem);
+    let actualList = [...this.state.list]
+    let listAfterRemove = '';
+    let lastArray = [];
+
+    const currentList = this.state.list.map(el => el.id);
+    const listBeforeRemove = elem;
 
     if (typeof elem === "number") {
-      const elIndex = this.state.list.findIndex(el => el.id === elem)
-      let actualList = [...this.state.list]
-      actualList = actualList.slice(0, elIndex).concat(actualList.slice(elIndex + 1, actualList.length))
+      actualList = actualList.slice(0, elIndex)
+        .concat(actualList.slice(elIndex + 1, actualList.length))
+
       this.setState({
         list: actualList
       })
+
     } else {
-      const currentList = this.state.list.map(el => el.id);
-      const listBeforeRemove = elem;
-      const listAfterRemove = [];
-     
 
+      listAfterRemove = currentList.filter(item => !listBeforeRemove.includes(item));
+      actualList.forEach(item1 => listAfterRemove.forEach(item2 => {
+        if (item1.id === item2) {
+          lastArray.push(item1)
+        }
+      }))
 
-      console.log(currentList, listBeforeRemove)
+      this.setState({
+        list: lastArray
+      })
     }
   }
 
