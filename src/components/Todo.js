@@ -41,7 +41,7 @@ class Todo extends React.Component {
     })
   }
 
-  handleDone(el){
+  handleDone(el) {
     const elementIndex = this.state.list.findIndex(elem => elem.id === el)
     const newelement = this.state.list;
     newelement[elementIndex].isCompleted = true;
@@ -50,18 +50,24 @@ class Todo extends React.Component {
     })
   }
 
-  handleRemove(elem){
-    const elIndex = this.state.list.findIndex(el => el.id === elem)
-    let actualList = [...this.state.list]
+  handleRemove(elem) {
 
-    console.log(elIndex)
-    console.log(actualList)
+    if (typeof elem === "number") {
+      const elIndex = this.state.list.findIndex(el => el.id === elem)
+      let actualList = [...this.state.list]
+      actualList = actualList.slice(0, elIndex).concat(actualList.slice(elIndex + 1, actualList.length))
+      this.setState({
+        list: actualList
+      })
+    } else {
+      const currentList = this.state.list.map(el => el.id);
+      const listBeforeRemove = elem;
+      const listAfterRemove = [];
+     
 
-    actualList = actualList.slice(0, elIndex).concat(actualList.slice(elIndex + 1, actualList.length))
-    this.setState({
-      list: actualList
-    })
-  
+
+      console.log(currentList, listBeforeRemove)
+    }
   }
 
   render() {
@@ -74,7 +80,7 @@ class Todo extends React.Component {
         <TaskTodo
           key={el.id}
           element={el}
-          doneTask = {this.handleDone}
+          doneTask={this.handleDone}
           remove={this.handleRemove}
         />
       )
@@ -94,7 +100,9 @@ class Todo extends React.Component {
             <Row>
               {listOfTasks}
             </Row>
-            <Buttons />
+            <Buttons
+              list={this.state.list}
+              remove={this.handleRemove} />
           </Col>
         </Row>
       </Container>
