@@ -9,13 +9,30 @@ class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.removeTask = this.removeTask.bind(this);
-    this.show = this.show.bind(this)
+    this.showCard = this.showCard.bind(this)
 
   }
 
-  show() {
-    const list = this.props.list.map(el => el)
-    console.log("list")
+  showCard(index) {
+    switch (index) {
+      case 'all':
+        this.props.show({
+          buttonAttr: index
+        })
+        break;
+      case 'active':
+        this.props.show({
+          buttonAttr: index
+        })
+        break;
+      case 'completed':
+        this.props.show({
+          buttonAttr: index
+        })
+        break;
+      default:
+        console.log('PRAY')
+    }
   }
 
   removeTask() {
@@ -26,9 +43,17 @@ class Buttons extends React.Component {
   render() {
     return (
       <div className='btnPos'>
-        <Button id='all' />
-        <Button id='active' />
-        <Button id='completed' />
+        <Button
+          id='all'
+          click={this.showCard}
+        />
+        <Button
+          id='active'
+          click={this.showCard} />
+        <Button
+          id='completed'
+          click={this.showCard}
+        />
         <Button
           id='clear'
           click={this.removeTask}

@@ -4,7 +4,7 @@ class Button extends React.Component {
   constructor(props) {
     super(props)
     this.formatAtt = this.formatAtt.bind(this)
-    this.wtf = this.wtf.bind(this) 
+    this.showingCards = this.showingCards.bind(this)
   }
 
   formatAtt(id) {
@@ -12,15 +12,15 @@ class Button extends React.Component {
     return id.charAt(0).toUpperCase() + id.slice(1)
   }
 
-  wtf() {
-    this.props.click();
+  showingCards(e) {
+    this.props.click(e.target.id)
   }
 
   render() {
     const id = this.props.id
 
     return (
-      <button id={id} type='button' onClick={this.wtf}>{this.formatAtt(id)}</button>
+      <button id={id} type='button' onClick={this.showingCards}>{this.formatAtt(id)}</button>
     )
   }
 }

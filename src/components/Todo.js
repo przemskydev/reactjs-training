@@ -13,11 +13,13 @@ class Todo extends React.Component {
     this.addTaskToList = this.addTaskToList.bind(this);
     this.handleDone = this.handleDone.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleShow =  this.handleShow.bind(this)
 
     this.state = {
       list: [
       ],
-      inputValue: ''
+      inputValue: '',
+      visibleCard: ''
     }
   }
 
@@ -82,6 +84,12 @@ class Todo extends React.Component {
     }
   }
 
+  handleShow(obj){
+    this.setState({
+      visibleCard: obj.buttonAttr
+    })
+  }
+
   render() {
 
     const welcome = <h1>Hello there!</h1>;
@@ -94,6 +102,7 @@ class Todo extends React.Component {
           element={el}
           doneTask={this.handleDone}
           remove={this.handleRemove}
+          visibleCard={this.state.visibleCard}
         />
       )
 
@@ -114,7 +123,8 @@ class Todo extends React.Component {
             </Row>
             <Buttons
               list={this.state.list}
-              remove={this.handleRemove} />
+              remove={this.handleRemove}
+              show={this.handleShow} />
           </Col>
         </Row>
       </Container>
