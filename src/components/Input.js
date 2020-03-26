@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import './style/Input.css';
 
 class Input extends React.Component {
   constructor(props) {
@@ -8,11 +8,11 @@ class Input extends React.Component {
     this.addTask = this.addTask.bind(this);
   }
 
-  handleChange(e){
+  handleChange(e) {
     this.props.valueChange(e.target.value);
   }
 
-  addTask(){
+  addTask() {
     this.props.addNewTask()
   }
 
@@ -20,6 +20,7 @@ class Input extends React.Component {
     return (
       <div>
         <input
+          id='addInput'
           type='addTask'
           value={this.props.value}
           placeholder='Add task'

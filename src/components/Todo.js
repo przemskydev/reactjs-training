@@ -12,11 +12,14 @@ class Todo extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.addTaskToList = this.addTaskToList.bind(this);
     this.handleDone = this.handleDone.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
+    this.handleShow =  this.handleShow.bind(this)
+
     this.state = {
       list: [
-        { id: 1, title: 'Zrobić obiad', isCompleted: false },
       ],
-      inputValue: ''
+      inputValue: '',
+      visibleCard: ''
     }
   }
 
@@ -40,12 +43,50 @@ class Todo extends React.Component {
     })
   }
 
-  handleDone(el){
-    const elementIndex = this.state.list.findIndex(elem => elem.id == el)
+  handleDone(el) {
+    const elementIndex = this.state.list.findIndex(elem => elem.id === el)
     const newelement = this.state.list;
     newelement[elementIndex].isCompleted = true;
     this.setState({
       list: newelement
+    })
+  }
+
+  handleRemove(elem) {
+    const elIndex = this.state.list.findIndex(el => el.id === elem);
+    let actualList = [...this.state.list]
+    let listAfterRemove = '';
+    let lastArray = [];
+
+    const currentList = this.state.list.map(el => el.id);
+    const listBeforeRemove = elem;
+
+    if (typeof elem === "number") {
+      actualList = actualList.slice(0, elIndex)
+        .concat(actualList.slice(elIndex + 1, actualList.length))
+
+      this.setState({
+        list: actualList
+      })
+
+    } else {
+
+      listAfterRemove = currentList.filter(item => !listBeforeRemove.includes(item));
+      actualList.forEach(item1 => listAfterRemove.forEach(item2 => {
+        if (item1.id === item2) {
+          lastArray.push(item1)
+        }
+      }))
+
+      this.setState({
+        list: lastArray
+      })
+    }
+  }
+
+  handleShow(obj){
+    this.setState({
+      visibleCard: obj.buttonAttr
     })
   }
 
@@ -59,7 +100,9 @@ class Todo extends React.Component {
         <TaskTodo
           key={el.id}
           element={el}
-          doneTask = {this.handleDone}
+          doneTask={this.handleDone}
+          remove={this.handleRemove}
+          visibleCard={this.state.visibleCard}
         />
       )
 
@@ -78,7 +121,10 @@ class Todo extends React.Component {
             <Row>
               {listOfTasks}
             </Row>
-            <Buttons />
+            <Buttons
+              list={this.state.list}
+              remove={this.handleRemove}
+              show={this.handleShow} />
           </Col>
         </Row>
       </Container>
