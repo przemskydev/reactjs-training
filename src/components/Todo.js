@@ -1,8 +1,9 @@
 import React from 'react';
 import Input from './Input';
 import TaskTodo from './TaskTodo';
-import Buttons from './Buttons'
+import Buttons from './Buttons';
 import { Container, Row, Col } from 'react-bootstrap';
+
 import './style/Todo.css';
 
 
@@ -13,13 +14,13 @@ class Todo extends React.Component {
     this.addTaskToList = this.addTaskToList.bind(this);
     this.handleDone = this.handleDone.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
-    this.handleShow =  this.handleShow.bind(this)
+    this.handleShow = this.handleShow.bind(this)
 
     this.state = {
       list: [
       ],
       inputValue: '',
-      visibleCard: ''
+      visibleCard: '',
     }
   }
 
@@ -30,10 +31,12 @@ class Todo extends React.Component {
       isCompleted: false
     };
     const newList = [item, ...this.state.list];
-    this.setState({ list: newList })
+    this.setState({
+      list: newList,
+    })
     this.setState({
       inputValue: '',
-    })
+    });
   }
 
   handleChange(value) {
@@ -84,7 +87,7 @@ class Todo extends React.Component {
     }
   }
 
-  handleShow(obj){
+  handleShow(obj) {
     this.setState({
       visibleCard: obj.buttonAttr
     })
@@ -117,6 +120,7 @@ class Todo extends React.Component {
               valueChange={this.handleChange}
               value={inputValues}
               addNewTask={this.addTaskToList}
+              showModal={this.showModal}
             />
             <Row>
               {listOfTasks}
